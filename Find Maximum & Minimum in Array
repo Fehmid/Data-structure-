@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+int main(){
+int i,min;
+int max=0;
+int arr[5]; //array size is defined to 5
+
+cout<<"Enter the values in the array :"<<endl;
+for(int i=0 ; i<5 ; i++){  //for loop to enter the values in array
+
+    cin>>arr[i];
+}
+for(int i=0 ; i<5 ; i++) //This loop is to print The entered value in array
+{
+
+cout<<arr[i]<<"\t";
+
+}
+for(int i=0 ; i<5 ; i++){ //This loop is will compare the number with the array
+   if ( max<arr[i])
+   max=arr[i];
+}
+
+ cout<<"Maximum Number in array is : "<<max<<endl;
+
+ for(int i=0 ; i<5 ; i++){ // This is to find minimum by comparing
+   if ( min>arr[i])
+   min=arr[i];
+}
+
+ cout<<"Manimum Number in array is : "<<min<<endl;
+    return 0;
+}
