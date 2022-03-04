@@ -1,0 +1,224 @@
+#include<iostream>
+using namespace std;
+
+//ARRAY CLASS START
+class ArrayList{
+    private:
+        int size;
+        int length;
+        int pos;
+        int * Array;
+        int * curr;
+    
+    public:
+     //Constructor start
+        ArrayList(){
+                Array=new int [size];
+                size=10;
+                length;
+                pos=0;
+                curr = Array;
+            }
+       //Constructor End
+
+
+       //Destructor Start     
+        ~ArrayList(){
+            delete [] Array;
+            delete curr;
+        }
+    //Destructor
+
+
+   ///Empty Function Start
+
+    bool IsEmpty(){
+        if(length==0)
+            return true;
+        else return false;
+
+    }
+    ///Empty Function End
+
+    ///Head Function
+
+    void head(){
+        curr = Array;
+    }
+    
+    //Head Function end
+
+
+////Tail function start
+    void tail(){
+        curr = Array+length-1;
+    }
+
+    void back(){
+        curr = curr -1;
+        return;
+    }
+
+   /* bool IsFull(){
+        if(length==0){
+        
+            return true;
+            }
+        else 
+         
+         false;    
+           }
+        
+     */
+
+bool IsFull(){
+
+    if(length==size){
+        return true;
+    }
+    else 
+            return false;
+    }
+        
+ void next(){
+     curr = curr+1;
+ }
+
+ int Length(){
+     return length;
+ }
+
+ void emptylist(){
+     head();
+     for(int x=0; x<size; x++){
+         *curr++=0;
+     }
+ }
+
+  
+    //Print Function
+        void printArray(){
+        
+            if(length>0){
+              
+                head();
+                for(int x=0; x<length; x++)
+                cout<<*curr++<<" " ;
+                
+            }
+            else cout<<"Array is Empty "<<endl;
+
+        }
+
+        //Print Function End
+
+
+
+        //Insert Function start
+        void InsertElement(int val){
+            if (!IsFull())
+            {
+                head();
+                curr= curr + length;
+                *curr= val;
+                length++;
+            }
+            else 
+            {
+                cout<<"Array is Full "<<endl;
+            }
+            
+        }
+         //Insert Function end
+
+
+         //Insert At position Function start 
+    void InsertAtPos(int val, int pos){
+        if (!IsFull()){
+        if(pos<=length && pos>0)
+        {
+           tail();
+        }
+        for (int i=length; i>=pos; i--){
+            *(curr+1) = *curr;
+            //back();
+        }
+        next();
+        *(curr)= val;
+        length++;
+    } else if (pos>length && pos<=size){
+        head();
+        curr = curr + pos-1;
+        *curr =val;
+        length++;
+    } else
+    cout<<"Invalid Position"<<endl;
+        }
+
+   //Insert At position Function end
+
+
+    //Reverse Array Function
+
+    void reverse_Array(){
+        int *p1, *pn, temp;
+        p1= Array;
+        pn= Array+length-1;
+        int val =size/2;
+        for (int i=0; i<val; i++){
+            temp = *p1;
+            *p1=*pn;
+            *pn = temp;
+            p1++;
+            pn--;
+        }
+    }
+
+  //Reverse Array Function End
+
+
+ ///Delete Function Start
+
+    void deleteElementAtPos(){
+        if (!IsEmpty()){
+            if(pos<=size && pos>0){
+                head();
+                curr = curr + pos-1;
+                for(int x=0; x<=length-pos; x++){
+                    *(curr)= *(curr+1);
+                    next(); //curr = curr+1
+                }
+                    length--;
+            }
+        }
+
+    }
+     ///Delete Function 
+
+
+
+
+};
+//ARRAY CLASS START
+
+int main(){
+   ArrayList *obj = new ArrayList();
+
+   ///obj->emptylist();
+   obj->InsertElement(1);
+   obj->InsertElement(2);
+   obj->InsertElement(3);
+   obj->InsertElement(4);
+   obj->InsertElement(5);
+   obj->InsertElement(6);
+   
+
+   obj->printArray();
+
+   obj->reverse_Array();
+   cout<<"     "<<endl;
+   cout<<" "<<"After Reverse :"<<endl;
+   obj->printArray();
+
+    return 0;
+}
